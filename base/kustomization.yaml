@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: awx
+generationOptions:
+  disableNameSuffitxHash: true
+secretGenerator:
+  - name: awx-secret-tls
+    type: kubernetes.io/tls
+    files:
+      - server.crt
+      - server.key
+resources:
+      - namespace.yml
+      - pvc.yml
+      - awx.yml  
