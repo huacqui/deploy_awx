@@ -7,7 +7,7 @@ server.crt y server.key en caso de que sea un experto en kubernetes puede modifi
 Tener en cuanta que en caso de no contar con un certificado el instalador por defecto crea un autofirmado solo tiene que faciliar el hostname en el archivo base/awx.yml y en el deploy.sh
 
 # Entorno de prueba
-Roky linux 8.4
+Rocky Linux 8.4
 
 # Parametros
  --k3s Instala unificamente el k3s
