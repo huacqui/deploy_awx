@@ -13,3 +13,7 @@ Roky linux 8.4
  --ks3 Instala unificamente el k3s
  --awx deploy del operador y del awx
  --all ejecuta el --ks3 y awx solo recomendado si cuenta con buen ancho de banda para descargar las imagenes y dependecias.
+# Pasos para ejecutar
+git clone https://github.com/huacqui/deploy_awx.git
+cd deploy_awx/
+./deploy.sh --all
