@@ -14,6 +14,8 @@ Roky linux 8.4
  --awx deploy del operador y del awx
  --all ejecuta el --ks3 y awx solo recomendado si cuenta con buen ancho de banda para descargar las imagenes y dependecias.
 # Pasos para ejecutar
-git clone https://github.com/huacqui/deploy_awx.git
-cd deploy_awx/
-./deploy.sh --all
+```bash
+# git clone https://github.com/huacqui/deploy_awx.git
+# cd deploy_awx/
+# ./deploy.sh --all
+```
