@@ -11,7 +11,7 @@ secretGenerator:
    - name: awx-admin-password
      type: Opaque
      literals:
-       - password=Data213347!
+       - password=Admin123!
 resources:
       - namespace.yml
       - pvc.yml
