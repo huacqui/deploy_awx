@@ -42,6 +42,7 @@ generate_certificate () {
 }
 deploy_awx () {
    kubectl apply -f https://raw.githubusercontent.com/ansible/awx-operator/$OPERATOR_TAG/deploy/awx-operator.yaml
+   sleep 30
    kubectl appy -k base
     
 }
