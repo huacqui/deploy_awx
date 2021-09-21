@@ -1,5 +1,5 @@
 # deploy_awx
-Despliega el awx sobre ks3 y nfs provisioner para persistir los datos
+Despliega el awx sobre k3s y nfs provisioner para persistir los datos
 
 # Preparación de script
 En caso de que necesite agregar los certificados firmados por la CA de su preferencia es necesario copiar en la carpeta base el certificado con el siguente nomrbre
@@ -10,9 +10,9 @@ Tener en cuanta que en caso de no contar con un certificado el instalador por de
 Roky linux 8.4
 
 # Parametros
- --ks3 Instala unificamente el k3s
+ --k3s Instala unificamente el k3s
  --awx deploy del operador y del awx
- --all ejecuta el --ks3 y awx solo recomendado si cuenta con buen ancho de banda para descargar las imagenes y dependecias.
+ --all ejecuta el --k3s y awx solo recomendado si cuenta con buen ancho de banda para descargar las imagenes y dependecias.
 # Pasos para ejecutar
 ```bash
 # git clone https://github.com/huacqui/deploy_awx.git
