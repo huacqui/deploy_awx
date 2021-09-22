@@ -5,7 +5,7 @@ export IP_NFS_SERVER=$(hostname -I | awk '{print $1}')
 export OPERATOR_TAG=0.13.0
 export HELM_VERSION=v3.7.0
 export AWX_HOST="awx.labtest.com.py"
-export GENERATE_CERTIFICATE="TRUE"
+export GENERATE_CERTIFICATE="FALSE"
 if [ "$1"x == "x" ]
 then
   echo "Debe indicar el tipo de tarea que desea ejecutar"
@@ -26,6 +26,7 @@ config_systems () {
 
 install_dependencies () {
   curl -sfL https://get.k3s.io | sudo bash -
+  sleep 10
   ln -s /usr/local/bin/k3s /usr/sbin/kubectl
   kubectl completion bash > /etc/bash_completion.d/kubectl_completion
   curl -sO https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz && tar -xvzf helm-$HELM_VERSION-linux-amd64.tar.gz && mv -v linux-amd64/helm /usr/sbin/ && rm -rvf helm-$HELM_VERSION-linux-amd64.tar.gz  linux-amd64
@@ -38,12 +39,12 @@ install_dependencies () {
 }
 
 generate_certificate () {
-   openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -out ./base/server.crt -keyout ./base/server.key -subj "/CN=${AWX_HOST}/O=${AWX_HOST}" -addext "subjectAltName = DNS:${AWX_HOST}"
+   openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -out ./base/tls.crt -keyout ./base/tls.key -subj "/CN=${AWX_HOST}/O=${AWX_HOST}" -addext "subjectAltName = DNS:${AWX_HOST}"
 }
 deploy_awx () {
    kubectl apply -f https://raw.githubusercontent.com/ansible/awx-operator/$OPERATOR_TAG/deploy/awx-operator.yaml
    sleep 30
-   kubectl appy -k base
+   kubectl apply -k base
     
 }
 
@@ -56,7 +57,7 @@ fi
 
 if [ $1 == '--awx' ]
 then
-  if [ $GENERATE_CERTIFICATE == 'TRUE' ]
+  if [ $GENERATE_CERTIFICATE == "TRUE" ]
   then
 	  generate_certificate
   fi	  
@@ -67,10 +68,10 @@ if [ $1 == '--all' ]
 then
    config_systems
    install_dependencies
-    if [ $GENERATE_CERTIFICATE == 'TRUE' ]
-  then
+    if [ $GENERATE_CERTIFICATE == "TRUE" ]
+    then
           generate_certificate
-  fi
+    fi
    deploy_awx
 fi
 
