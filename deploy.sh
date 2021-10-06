@@ -2,7 +2,7 @@
 ##### Deploy K3s with nfs-provisioners and helm #####
 ### vars ###
 export IP_NFS_SERVER=$(hostname -I | awk '{print $1}')
-export OPERATOR_TAG=0.13.0
+export OPERATOR_TAG=0.14.0
 export HELM_VERSION=v3.7.0
 export AWX_HOST="awx.labtest.com.py"
 export GENERATE_CERTIFICATE="FALSE"
@@ -42,9 +42,12 @@ generate_certificate () {
    openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -out ./base/tls.crt -keyout ./base/tls.key -subj "/CN=${AWX_HOST}/O=${AWX_HOST}" -addext "subjectAltName = DNS:${AWX_HOST}"
 }
 deploy_awx () {
-   kubectl apply -f https://raw.githubusercontent.com/ansible/awx-operator/$OPERATOR_TAG/deploy/awx-operator.yaml
+   #kubectl apply -f https://raw.githubusercontent.com/ansible/awx-operator/$OPERATOR_TAG/deploy/awx-operator.yaml
+   git clone --single-branch --branch=$OPERATOR_TAG https://github.com/ansible/awx-operator.git
+   cd awx-operator
+   make deploy
    sleep 30
-   kubectl apply -k base
+   kubectl apply -k ../base
     
 }
 
