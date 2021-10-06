@@ -16,7 +16,7 @@ then
 fi
 
 config_systems () {
-  dnf update -y && dnf install vim bash-completion nfs-utils -y
+  dnf update -y && dnf install vim bash-completion nfs-utils tar -y
   firewall-cmd --add-service=nfs --add-service=http --add-service=https --permanent && firewall-cmd --reload
   firewall-cmd --add-masquerade --permanent && firewall-cmd --reload
   sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config
