@@ -15,6 +15,5 @@ secretGenerator:
     literals:
       - password=Admin123!
 resources:
-      - namespace.yml
       - pvc.yml
       - awx.yml  
