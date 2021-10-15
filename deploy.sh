@@ -6,6 +6,7 @@ export OPERATOR_TAG=0.14.0
 export HELM_VERSION=v3.7.0
 export AWX_HOST="awx.labtest.com.py"
 export GENERATE_CERTIFICATE="FALSE"
+export NAMESPACE=awx
 if [ "$1"x == "x" ]
 then
   echo "Debe indicar el tipo de tarea que desea ejecutar"
