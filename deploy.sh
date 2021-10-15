@@ -28,15 +28,18 @@ config_systems () {
 install_dependencies () {
   curl -sfL https://get.k3s.io | sudo bash -
   sleep 10
-  ln -s /usr/local/bin/k3s /usr/sbin/kubectl
-  kubectl completion bash > /etc/bash_completion.d/kubectl_completion
-  curl -sO https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz && tar -xvzf helm-$HELM_VERSION-linux-amd64.tar.gz && mv -v linux-amd64/helm /usr/sbin/ && rm -rvf helm-$HELM_VERSION-linux-amd64.tar.gz  linux-amd64
-  helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
-  mkdir -v /data && chown -Rv nobody.nobody /data
-  echo "/data $IP_NFS_SERVER/32(rw,sync,no_subtree_check,no_root_squash)" >> /etc/exports
-  exportfs -arv
-  exportfs -s
-  helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --set nfs.server=$IP_NFS_SERVER --set nfs.path=/data --kubeconfig=/etc/rancher/k3s/k3s.yaml
+  if [ -f /usr/local/bin/k3s ]
+  then 
+     ln -s /usr/local/bin/k3s /usr/sbin/kubectl
+     kubectl completion bash > /etc/bash_completion.d/kubectl_completion
+     curl -sO https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz && tar -xvzf helm-$HELM_VERSION-linux-amd64.tar.gz && mv -v linux-amd64/helm /usr/sbin/ && rm -rvf helm-$HELM_VERSION-linux-amd64.tar.gz  linux-amd64
+     helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+     mkdir -v /data && chown -Rv nobody.nobody /data
+     echo "/data $IP_NFS_SERVER/32(rw,sync,no_subtree_check,no_root_squash)" >> /etc/exports
+     exportfs -arv
+     exportfs -s
+     helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --set nfs.server=$IP_NFS_SERVER --set nfs.path=/data --kubeconfig=/etc/rancher/k3s/k3s.yaml
+ fi
 }
 
 generate_certificate () {
@@ -48,7 +51,8 @@ deploy_awx () {
    cd awx-operator
    make deploy
    sleep 30
-   kubectl apply -k ../base
+   cd ..
+   kubectl apply -k base
     
 }
 
