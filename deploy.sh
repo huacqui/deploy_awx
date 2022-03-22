@@ -2,9 +2,9 @@
 ##### Deploy K3s with nfs-provisioners and helm #####
 ### vars ###
 export IP_NFS_SERVER=$(hostname -I | awk '{print $1}')
-export OPERATOR_TAG=0.14.0
-export HELM_VERSION=v3.7.0
-export AWX_HOST="awx.labtest.com.py"
+export OPERATOR_TAG=0.18.0
+export HELM_VERSION=v3.8.1
+export AWX_HOST="awx.t.st"
 export GENERATE_CERTIFICATE="FALSE"
 export NAMESPACE=awx
 if [ "$1"x == "x" ]
@@ -19,6 +19,7 @@ fi
 config_systems () {
   dnf update -y && dnf install vim bash-completion nfs-utils tar git make -y
   firewall-cmd --add-service=nfs --add-service=http --add-service=https --permanent && firewall-cmd --reload
+  firewall-cmd --add-port=10250/tcp --permanent && firewall-cmd --reload
   firewall-cmd --add-masquerade --permanent && firewall-cmd --reload
   sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config
   setenforce 0
