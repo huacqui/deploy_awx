@@ -7,7 +7,7 @@ tls.crt y tls.key en caso de que sea un experto en kubernetes puede modificar el
 Tener en cuanta que en caso de no contar con un certificado el instalador por defecto crea un autofirmado solo tiene que faciliar el hostname en el archivo base/awx.yml y en el deploy.sh
 
 # Entorno de prueba
-Rocky Linux 8.4
+Rocky Linux 8.5
 
 # Parametros
  --k3s Instala unificamente el k3s
