@@ -7,6 +7,3 @@ spec:
    ingress_tls_secret: awx-secret-tls
    hostname: awx.labtest.com.py
    projects_persistence: true
-   projects_storage_class: nfs-client
-   postgres_storage_class: nfs-client
-   projects_storage_access_mode: ReadWriteOnce
