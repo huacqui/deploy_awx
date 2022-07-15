@@ -10,9 +10,5 @@ secretGenerator:
     files:
       - tls.crt
       - tls.key
-  - name: awx-admin-password
-    type: Opaque
-    literals:
-      - password=Admin123!
 resources:
-      - awx.yml  
+- awx.yml  
