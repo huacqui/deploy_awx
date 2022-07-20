@@ -5,6 +5,6 @@ metadata:
 spec:
    ingress_type: ingress
    ingress_tls_secret: awx-secret-tls
-   hostname: awx.data.com.py
+   hostname: awx.localt.st
    projects_persistence: true
    projects_storage_access_mode: ReadWriteOnce
