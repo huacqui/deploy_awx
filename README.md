@@ -13,9 +13,14 @@ Rocky Linux 8.5
  --k3s Instala unificamente el k3s
  --awx deploy del operador y del awx
  --all ejecuta el --k3s y awx solo recomendado si cuenta con buen ancho de banda para descargar las imagenes y dependecias.
+ --uninstall remueve la instalacion completa
 # Pasos para ejecutar
 ```bash
 # git clone https://github.com/huacqui/deploy_awx.git
 # cd deploy_awx/
 # ./deploy.sh --all
+```
+# Obtener el admin password
+```bash
+# kubectl get secret awx-admin-password -o json  -n awx | jq -r .data.password | base64 -d
 ```
