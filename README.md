@@ -10,10 +10,10 @@ Tener en cuanta que en caso de no contar con un certificado el instalador por de
 Rocky Linux 8.5
 
 # Parametros
- --k3s Instala unificamente el k3s
- --awx deploy del operador y del awx
- --all ejecuta el --k3s y awx solo recomendado si cuenta con buen ancho de banda para descargar las imagenes y dependecias.
- --uninstall remueve la instalacion completa
+ * --k3s Instala unificamente el k3s
+ * --awx deploy del operador y del awx
+ * --all ejecuta el --k3s y awx solo recomendado si cuenta con buen ancho de banda para descargar las imagenes y dependecias.
+ * --uninstall remueve la instalacion completa
 # Pasos para ejecutar
 ```bash
 # git clone https://github.com/huacqui/deploy_awx.git
