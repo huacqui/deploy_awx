@@ -11,4 +11,6 @@ secretGenerator:
       - tls.crt
       - tls.key
 resources:
-- awx.yml  
+- awx.yml
+- pvc.yml
+- pv.yml

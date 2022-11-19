@@ -41,6 +41,9 @@ deploy_awx () {
    mkdir -p ~/.kube
    cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
    chmod 600 ~/.kube/config
+   mkdir -p /awx/data/{postgres-13,projects}
+   chmod 755 /awx/data/postgres-13
+   chown 1000:0 /awx/data/projects 
    helm repo add awx-operator https://ansible.github.io/awx-operator/
    helm repo update
    helm install -n awx --create-namespace my-awx-operator awx-operator/awx-operator

@@ -6,5 +6,18 @@ spec:
    ingress_type: ingress
    ingress_tls_secret: awx-secret-tls
    hostname: awx.data.com.py
+   postgres_configuration_secret: awx-postgres-configuration
+
+   postgres_storage_class: awx-postgres-volume
+   postgres_storage_requirements:
+     requests:
+       storage: 8Gi
+
    projects_persistence: true
-   projects_storage_access_mode: ReadWriteOnce
+   projects_existing_claim: awx-projects-claim
+
+   postgres_init_container_resource_requirements: {}
+   postgres_resource_requirements: {}
+   web_resource_requirements: {}
+   task_resource_requirements: {}
+   ee_resource_requirements: {}
