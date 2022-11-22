@@ -5,15 +5,12 @@ metadata:
 spec:
    ingress_type: ingress
    ingress_tls_secret: awx-secret-tls
-<<<<<<< HEAD
    hostname: awx.data.com.py
    postgres_configuration_secret: awx-postgres-configuration
    postgres_storage_class: awx-postgres-volume
    postgres_storage_requirements:
      requests:
        storage: 8Gi
-=======
    hostname: awx.localt.st
->>>>>>> e41bfa81005678e4de6bf593c007d7da5aa56388
    projects_persistence: true
    projects_existing_claim: awx-projects-claim
