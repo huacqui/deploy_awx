@@ -11,7 +11,7 @@ spec:
     storage: 8Gi
   storageClassName: awx-postgres-volume
   hostPath:
-    path: /awx/data/postgres-13
+    path: /awx/data/postgres
 
 ---
 apiVersion: v1

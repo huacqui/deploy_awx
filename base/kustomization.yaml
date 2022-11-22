@@ -10,6 +10,19 @@ secretGenerator:
     files:
       - tls.crt
       - tls.key
+  - name: awx-postgres-configuration
+    type: Opaque
+    literals:
+      - host=awx-postgres-13
+      - port=5432
+      - database=awx
+      - username=awx
+      - password=Ansible123!
+      - type=managed
+  - name: awx-admin-password
+    type: Opaque
+    literals:
+      - password=Ansible123!
 resources:
 - awx.yml
 - pvc.yml
