@@ -16,7 +16,7 @@ then
 fi
 
 config_systems () {
-  dnf update -y && dnf install vim bash-completion tar git -y
+  dnf update -y && dnf install jq vim bash-completion tar git -y
   firewall-cmd --add-service=http --add-service=https --permanent && firewall-cmd --reload
   firewall-cmd --add-port=10250/tcp --permanent && firewall-cmd --reload
   firewall-cmd --add-masquerade --permanent && firewall-cmd --reload
