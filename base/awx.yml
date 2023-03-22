@@ -5,7 +5,6 @@ metadata:
 spec:
    ingress_type: ingress
    ingress_tls_secret: awx-secret-tls
-   hostname: awx.data.com.py
    postgres_configuration_secret: awx-postgres-configuration
    postgres_storage_class: awx-postgres-volume
    postgres_storage_requirements:
